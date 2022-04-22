@@ -13,9 +13,17 @@
 
 html {
   color: #222;
-  font-size: 1em;
+  font-size: 16px;
   line-height: 1.4;
+  box-sizing: border-box;
+  font-family: "PT Sans", sans-serif;
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
+
 
 /*
  * Remove text-shadow in selection highlight:
@@ -86,178 +94,306 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
-  display: none !important;
+/*universal styles*/
+h1, h2, h3 {
+  font-family: "Sirin Stencil", serif;
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
+h2 {
+  font-size: 2.5rem;
+  padding: 30px
+}
 
-.sr-only {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
+.image-container {
+  /*min-width: 400px;*/
+  /*height: 100%;*/
+}
+
+img {
+  width: 100%;
   overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
 }
 
-/*
- * Extends the .sr-only class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
+p {
+  text-indent: 30px;
+  padding: 30px;
+}
 
-.sr-only.focusable:active,
-.sr-only.focusable:focus {
-  clip: auto;
-  height: auto;
+.content-container {
+  display: flex;
+  margin: auto 30px;
+}
+
+
+/*navigation bar*/
+nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  /*margin: 15px 0px;*/
+  padding: 15px 30px;
+  justify-content: space-between;
+}
+
+logo {
+  margin: auto 0;
+  font-family: "Sirin Stencil", serif;
+  font-size: 2.5rem;
+  color: pink;
+  flex-shrink: 1;
+}
+
+.nav-bar ul {
+  flex-shrink: 2;
+}
+
+.nav-bar ul li {
+  margin-right: 10px;
+  padding: 20px;
+  display: inline;
+}
+
+li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+li a:hover {
+  color: pink;
+}
+
+li a:active {
+  color: white;
+}
+
+/*alternate hamburger menu*/
+.dropdown-menu {
+  display: none;
+}
+
+/*checkbox label and divs*/
+.hamburger {
+  height: 45px;
+  margin: 10px;
+  display: -ms-grid;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  background-color: black;
+  z-index: 100;
+}
+
+.hamburger div {
+  background-color: white;
+  /*color: white;*/
+  position: relative;
+  width: 40px;
+  height: 5px;
+  margin-top: 7px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*margin-right: 30px;*/
+}
+
+/*keeps checkbox from showing*/
+#hamburger {
+  display: none;
+}
+
+#hamburger:checked + .hamburger div {
+  background-color: pink;
+}
+
+#hamburger:checked ~ .dropdown-links {
+  height: 250px;
+}
+
+.dropdown-links {
+  width: 100%;
+  height: 0;
   margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
+  display: grid;
+  background-color: black;
+  grid-template-rows: 1fr repeat(4, 0.5fr);
+  grid-row-gap: 15px;
+  padding:0;
+  -webkit-transition: height .5s ease;
+  transition: height .5s ease;
+  z-index: 100;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
+.dropdown-links a:first-child, .dropdown-links a:last-child {
+  margin-top: 20px;
 }
 
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: " ";
-  display: table;
+/*class for the dropdown-links links to adjust their font etc.*/
+.burger-link {
+  background-color: black;
+  color: white;
+  width: 100%;
+  font-size: 1.75rem;
+  text-decoration: none;
 }
 
-.clearfix::after {
-  clear: both;
+.burger-link:hover {
+  background-color: pink;
+  color: black;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+.burger-link:active {
+  background-color: black;
+  color: pink;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+/*for smaller screen make nav bar a burger menu or icons?*/
+@media only screen and (max-width: 850px) {
+  .nav-bar{
+    display: none;
+  }
+  .dropdown-menu {
+    display: inline-flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0;
+    padding: 30px 0px;
+  }
+
+  logo {
+    flex-shrink: 3;
+  }
+
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
+/*header*/
+header {
+  background-color: black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
 
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
+header .image-container {
+  display: flex;
+  height: 550px;
+  width: 100%;
+}
+
+header .image-container img {
+  object-fit: cover;
+  object-position: 100% 75%;
+}
+
+
+/*about 710px is the next break where the paragraphs need to be adjusted/ the site is breaking there*/
+
+
+/*about section*/
+#about {
+  display: flex;
+  background-color: black;
+  color: white;
+}
+
+/*#about .content-container {*/
+/*  display: flex;*/
+/*  margin: auto 30px;*/
+/*}*/
+
+#about h2 {
+  color: pink;
+  /*padding: 30px*/
+}
+
+/*education section*/
+
+#education {
+  background-color: pink;
+}
+
+#education .content-container {
+  flex-direction: row-reverse;
+}
+
+#education .content-container h2 {
+  flex-shrink: 1;
+}
+
+#education .content-container p {
+  width: 30%;
+  flex-shrink: 1;
+}
+
+#formal-edu {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-top: 30px;
+  flex-shrink: 2;
+}
+
+#formal-edu h3 {
+  text-align: center;
+}
+
+#formal-edu ul li {
+  margin-top: 10px;
+  display: block;
+}
+
+/*projects section*/
+#projects {
+  background-color: black;
+  color: white;
+}
+
+
+#projects h2{
+  color: pink;
+}
+
+/*styling for smaller screens first breakpoint 850px*/
+@media only screen and (max-width: 850px) {
+  .content-container {
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+  #education .content-container {
+    flex-direction: column;
+  }
+  p {
+    padding: 0;
+    text-align: center;
   }
 
-  a,
-  a:visited {
-    text-decoration: underline;
+  #education .content-container h2 {
+    flex-shrink: unset;
   }
 
-  a[href]::after {
-    content: " (" attr(href) ")";
+  #education .content-container p {
+    width: 100%;
+    flex-shrink: unset;
   }
 
-  abbr[title]::after {
-    content: " (" attr(title) ")";
+  #formal-edu h3 {
+    margin: 0px;
   }
+}
 
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
 
-  pre {
-    white-space: pre-wrap !important;
-  }
 
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
+/*footer*/
+footer {
+  background-color: pink;
+  text-align: center;
+  padding: 30px;
+}
 
-  /*
-   * Printing Tables:
-   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
-  thead {
-    display: table-header-group;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+footer:before {
+  content: "\00a9";
 }
 
