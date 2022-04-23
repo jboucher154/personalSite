@@ -223,8 +223,12 @@ li a:active {
   z-index: 100;
 }
 
-.dropdown-links a:first-child, .dropdown-links a:last-child {
-  margin-top: 20px;
+.dropdown-links a:first-child {
+  margin-top: 40px;
+}
+
+.dropdown-links a:last-child {
+  margin-bottom: 40px;
 }
 
 /*class for the dropdown-links links to adjust their font etc.*/
