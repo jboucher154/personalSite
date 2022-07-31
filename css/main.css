@@ -145,6 +145,8 @@ p {
   background-color: transparent;
 }
 
+/*.scrollable::-webkit-scrollbar-track-piece*/
+
 /*navigation bar*/
 nav {
   background-color: black;
@@ -383,6 +385,7 @@ header .image-container img {
   display: flex;
   margin: 10px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 card {
@@ -391,6 +394,7 @@ card {
   box-shadow: 0px 0px 15px pink;
   margin: 10px;
   border-radius: 10px;
+  background-color: white;
 }
 
 .cardContentHolder {
@@ -403,38 +407,55 @@ card {
   flex: 1;
 }
 
+.cardContent h3, .cardContent p {
+  color: black;
+}
+
 card p {
   padding: 20px;
   max-height: 125px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   margin-bottom: 10px;
 }
 
 .link{
   /*margin-top: auto;*/
   align-self: flex-end;
+  background-color: black;
+  border-radius: 10px;
+  margin: 10px auto;
 }
 
 card a {
   color: pink;
   text-decoration: none;
   margin-bottom: 10px;
+  padding: 5px;
 }
 
 card a:hover {
-  text-decoration: underline;
+  color: white;
 }
 
 
 /*styling for smaller screens first breakpoint 850px*/
 @media only screen and (max-width: 850px) {
+  /*change image cropping*/
+  header .image-container img {
+    object-fit: cover;
+    object-position: 50% 75%;
+  }
+  /**/
   .content-container {
     flex-direction: column;
     padding-bottom: 30px;
   }
+
   #education .content-container {
     flex-direction: column;
   }
+
   p {
     padding: 0;
     text-align: center;
@@ -453,8 +474,6 @@ card a:hover {
     margin: 0px;
   }
 }
-
-
 
 /*footer*/
 footer {
