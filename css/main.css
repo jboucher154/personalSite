@@ -354,6 +354,15 @@ header .image-container img {
   flex-shrink: 1;
 }
 
+p a {
+  color: black;
+  text-decoration: white underline;
+}
+
+p a:hover {
+  color: white;
+}
+
 #formal-edu {
   display: flex;
   flex-direction: column;
